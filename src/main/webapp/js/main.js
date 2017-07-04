@@ -81,7 +81,7 @@ function showWeather(lat, long, city, code) {
 
 function loadCountries() {
 
-    $.get("firstapp/restservices/countries", (data) => {
+    $.get("../restservices/countries", (data) => {
         console.log(data);
         $(data).each(function(index) {
             console.log(this.name);

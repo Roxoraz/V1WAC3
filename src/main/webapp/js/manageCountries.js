@@ -5,7 +5,7 @@ $(document).ready(function() {
     loadCountries();
 });
 function loadCountries() {
-    $.get("http://localhost:4711/firstapp/restservices/countries", (data) => {
+    $.get("../restservices/countries", (data) => {
 
         $(data).each(function(index) {
 
@@ -22,7 +22,7 @@ function loadCountries() {
 $("#countryCollection").delegate('a', 'click', function() {
     code = $(this).data("code");
     console.log(code);
-$.get("http://localhost:4711/firstapp/restservices/countries/"+code, (data) =>{
+$.get("../restservices/countries/"+code, (data) =>{
 
     $(data).each(function(index) {
         console.log(data);
@@ -51,7 +51,7 @@ $("#insertButton").click(function(event) {
 var data = $("#inputForm").serialize();
 console.log(data);
     $.ajax({
-        url:"firstapp/restservices/countries",
+        url:"../restservices/countries",
         method:"POST",
         data: data,
         beforeSend: function (xhr) {
@@ -67,9 +67,9 @@ $("#updateButton").click(function(event) {
     event.preventDefault();
     var data = $("#updateForm").serialize();
     console.log(data);
-    console.log("firstapp/restservices/countries/"+$("#codeUpdate").text());
+    console.log("../restservices/countries/"+$("#codeUpdate").text());
     $.ajax({
-        url: "http://localhost:4711/firstapp/restservices/countries/"+$("#codeUpdate").text(),
+        url: "../restservices/countries/"+$("#codeUpdate").text(),
         type: "put",
         data: data,
         beforeSend: function (xhr) {
@@ -83,9 +83,9 @@ $("#updateButton").click(function(event) {
         event.preventDefault();
         var data = $("#updateForm").serialize();
         console.log(data);
-        console.log("firstapp/restservices/countries/"+$("#codeUpdate").text());
+        console.log("../restservices/countries/"+$("#codeUpdate").text());
         $.ajax({
-            url: "firstapp/restservices/countries/"+$("#codeUpdate").text(),
+            url: "../restservices/countries/"+$("#codeUpdate").text(),
             type: "delete",
             data: data,
             beforeSend: function (xhr) {
@@ -99,7 +99,7 @@ $("#updateButton").click(function(event) {
 });
 
 function searchCountries() {
-    $.get("firstapp/restservices/countries/search/"+$("#searchInput").val(), (data) => {
+    $.get("../restservices/countries/search/"+$("#searchInput").val(), (data) => {
     $("#countryCollection").empty();
         $(data).each(function(index) {
 
@@ -116,7 +116,7 @@ $("#searchButton").click(function(event) {
 });
 
 function getPop() {
-    $.get("firstapp/restservices/countries/population", (data) => {
+    $.get("../restservices/countries/population", (data) => {
         $("#countryCollection").empty();
         $(data).each(function(index) {
 
@@ -132,7 +132,7 @@ $("#populationButton").click(function(event) {
     getPop();
 });
 function getSur() {
-    $.get("firstapp/restservices/countries/surface", (data) => {
+    $.get("../restservices/countries/surface", (data) => {
         $("#countryCollection").empty();
         $(data).each(function(index) {
 
