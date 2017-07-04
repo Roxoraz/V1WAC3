@@ -6,5 +6,5 @@
         auth="Container"
         type="javax.sql.DataSource"
         username="postgres"
-        password="Test123" />
+        password="test123" />
 </Context>
