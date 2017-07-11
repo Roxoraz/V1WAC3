@@ -1,5 +1,4 @@
-
-let    time = new Date().getTime();
+let time = new Date().getTime();
 let expireDate =new Date().getTime() + 600000;
 
 $(document).ready(function() {
@@ -8,7 +7,6 @@ $(document).ready(function() {
 
 function initPage() {
     $.get("https://ipapi.co/json/", (data) => {
-
         $("#asn").text(data.asn);
         $("#city").text(data.city);
         $("#country_name").text(data.country_name);
@@ -26,24 +24,21 @@ function initPage() {
         $("#countryListTable").append('<tr data-capital="' + data.city + '" data-code="' + data.countryCode + '" data-lat="' + data.latitude + '" class="countryItem" data-lon="' + data.longitude + '" data-name="' + data.country_name + '" id="country0"><td class="name">' + data.city + '</td></tr>');
         showWeather(lat, long, city);
         loadCountries();
-
     });
-
-
 }
 
 function showWeather(lat, long, city, code) {
-    const link = "https://api.apixu.com/v1/current.json?key=2bcac1b303f945f7bad73120171107&q=52.08714,5.1575";
+    const link = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&APPID=64ac0146880bdde3f7724f6e2fef2212";
      let getCity = localStorage.getItem(city);
     if (getCity !== null && compareDate(getCity.expire) === true)  {
-        $("#name").text(getCity.name);
-        $("#cloud").text(getCity.weathermain);
-        $("#temp_c").text(prettify(getCity.temperature));
+        $("#cityWeather").text(getCity.name);
+        $("#weathermain").text(getCity.weathermain);
+        $("#temperature").text(prettify(getCity.temperature));
         $("#humidity").text(getCity.humidity);
-        $("#wind_mph").text(getCity.windspeed);
-
+        $("#windspeed").text(getCity.windspeed);
     }
-    else {
+    else
+    {
         $.get(link, (data) => {
             console.log(data);
 
@@ -54,11 +49,11 @@ function showWeather(lat, long, city, code) {
 
             weathermain = (weather.main);
             console.log(weathermain);
-            $("#name").text(city);
-            $("#cloud").text(weathermain);
-            $("#temp_c").text(prettify(temp));
+            $("#cityWeather").text(city);
+            $("#weathermain").text(weathermain);
+            $("#temperature").text(prettify(temp));
             $("#humidity").text(main.humidity);
-            $("#wind_mph").text(wind.speed);
+            $("#windspeed").text(wind.speed);
 
             let citystorage = {
                 name: city,
@@ -71,13 +66,9 @@ function showWeather(lat, long, city, code) {
             localStorage.setItem(city, JSON.stringify(citystorage));
         });
     }
-
-
-
 }
 
 function loadCountries() {
-
     $.get("../restservices/countries", (data) => {
         console.log(data);
         $(data).each(function(index) {
@@ -103,12 +94,14 @@ $("#countryListTable").delegate('tr', 'click', function() {
     showWeather(latt, lonn, capital, code);
 });
 
-function compareDate(expiredate){
-    if (time > expiredate) {
+function compareDate(expiredate)
+{
+    if (time > expiredate) 
+    {
         return true;
-
     }
-    else {
+    else
+    {
         return false;
     }
 }
