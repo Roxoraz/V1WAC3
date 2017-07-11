@@ -2,28 +2,28 @@
     font-family: Helvetica;
   }
 body{
-  background-color:#3366cc;
+  background-color:#a3463e;
 }
 
 table{
-      border: 1px solid #3366cc;
+      border: 1px solid #bc6760;
       margin:auto;
       width:75%;
       padding:10px;
 }
-tr:nth-child(even) {background-color: #99ccff}
+tr:nth-child(even) {background-color: #edafaa}
 th {
-    background-color:#0099ff;
+    background-color:#d1766e;
     color: white;
 }
 tr{
-  background-color: #66ccff;
+  background-color: #eda7a1;
     width:50%;
 }
 
 #frame div{
     display: inline-block;
-    background-color: #48ccee;
+    background-color: #db8c85;
     padding: 10px;
 
     }

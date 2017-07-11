@@ -9,21 +9,21 @@ $(document).ready(function() {
 function initPage() {
     $.get("https://ipapi.co/json/", (data) => {
 
-        $("#asn").text(data.as);
+        $("#asn").text(data.asn);
         $("#city").text(data.city);
-        $("#country_name").text(data.country);
-        $("#country").text(data.countryCode);
-        $("#latitude").text(data.lat);
-        $("#longitude").text(data.lon);
+        $("#country_name").text(data.country_name);
+        $("#country").text(data.country);
+        $("#latitude").text(data.latitude);
+        $("#longitude").text(data.longitude);
         $("#org").text(data.org);
-        $("#ip").text(data.query);
+        $("#ip").text(data.ip);
         $("#region").text(data.region);
         $("#timezone").text(data.timezone);
-        $("#postal").text(data.zip);
-        lat = data.lat;
-        long = data.lon;
+        $("#postal").text(data.postal);
+        lat = data.latitude;
+        long = data.longitude;
         city = data.city;
-        $("#countryListTable").append('<tr data-capital="' + data.city + '" data-code="' + data.countryCode + '" data-lat="' + data.lat + '" class="countryItem" data-lon="' + data.lon + '" data-name="' + data.country + '" id="country0"><td class="name">' + data.city + '</td></tr>');
+        $("#countryListTable").append('<tr data-capital="' + data.city + '" data-code="' + data.countryCode + '" data-lat="' + data.latitude + '" class="countryItem" data-lon="' + data.longitude + '" data-name="' + data.country_name + '" id="country0"><td class="name">' + data.city + '</td></tr>');
         showWeather(lat, long, city);
         loadCountries();
 
@@ -33,14 +33,14 @@ function initPage() {
 }
 
 function showWeather(lat, long, city, code) {
-    const link = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&APPID=64ac0146880bdde3f7724f6e2fef2212";
+    const link = "https://api.apixu.com/v1/current.json?key=2bcac1b303f945f7bad73120171107&q=52.08714,5.1575";
      let getCity = localStorage.getItem(city);
     if (getCity !== null && compareDate(getCity.expire) === true)  {
-        $("#cityWeather").text(getCity.name);
-        $("#weathermain").text(getCity.weathermain);
-        $("#temperature").text(prettify(getCity.temperature));
+        $("#name").text(getCity.name);
+        $("#cloud").text(getCity.weathermain);
+        $("#temp_c").text(prettify(getCity.temperature));
         $("#humidity").text(getCity.humidity);
-        $("#windspeed").text(getCity.windspeed);
+        $("#wind_mph").text(getCity.windspeed);
 
     }
     else {
@@ -54,11 +54,11 @@ function showWeather(lat, long, city, code) {
 
             weathermain = (weather.main);
             console.log(weathermain);
-            $("#cityWeather").text(city);
-            $("#weathermain").text(weathermain);
-            $("#temperature").text(prettify(temp));
+            $("#name").text(city);
+            $("#cloud").text(weathermain);
+            $("#temp_c").text(prettify(temp));
             $("#humidity").text(main.humidity);
-            $("#windspeed").text(wind.speed);
+            $("#wind_mph").text(wind.speed);
 
             let citystorage = {
                 name: city,
