@@ -28,7 +28,7 @@ function initPage() {
 }
 
 function showWeather(lat, long, city, code) {
-    const link = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&APPID=64ac0146880bdde3f7724f6e2fef2212";
+    const link = "https://api.apixu.com/v1/current.json?key=2bcac1b303f945f7bad73120171107&q="+city;
      let getCity = localStorage.getItem(city);
     if (getCity !== null && compareDate(getCity.expire) === true)  {
         $("#cityWeather").text(getCity.name);
