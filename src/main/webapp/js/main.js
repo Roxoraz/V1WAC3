@@ -7,22 +7,19 @@ $(document).ready(function() {
 });
 
 function initPage() {
-    $.get("http://ip-api.com/json", (data) => {
+    $.get("https://ipapi.co/json/", (data) => {
 
-        $("#as").text(data.as);
+        $("#asn").text(data.as);
         $("#city").text(data.city);
-        $("#country").text(data.country);
-        $("#countryCode").text(data.countryCode);
-        $("#isp").text(data.isp);
-        $("#lat").text(data.lat);
-        $("#lon").text(data.lon);
+        $("#country_name").text(data.country);
+        $("#country").text(data.countryCode);
+        $("#latitude").text(data.lat);
+        $("#longitude").text(data.lon);
         $("#org").text(data.org);
-        $("#query").text(data.query);
+        $("#ip").text(data.query);
         $("#region").text(data.region);
-        $("#regionName").text(data.regionName);
-        $("#status").text(data.status);
         $("#timezone").text(data.timezone);
-        $("#zip").text(data.zip);
+        $("#postal").text(data.zip);
         lat = data.lat;
         long = data.lon;
         city = data.city;
